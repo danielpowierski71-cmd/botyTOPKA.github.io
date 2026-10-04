@@ -1,1 +1,200 @@
+1  index.html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BotyTOPKA</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #090b10;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    padding: 22px 30px;
+    background: #11151d;
+    border-bottom: 1px solid #272d38;
+}
+
+.logo {
+    color: #55ff70;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 950px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: #11151d;
+    border: 1px solid #292f3b;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+h2 {
+    color: #55ff70;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    color: #aab1bf;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    background: #090b10;
+    border: 1px solid #343b49;
+    border-radius: 7px;
+    color: white;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 12px;
+    border: 0;
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.start {
+    background: #2fbf50;
+}
+
+.stop {
+    background: #d83b43;
+}
+
+.action {
+    background: #3478f6;
+}
+
+button:hover {
+    filter: brightness(1.15);
+}
+
+.status {
+    margin-top: 18px;
+    padding: 12px;
+    background: #090b10;
+    border-radius: 7px;
+    color: #aab1bf;
+    text-align: center;
+}
+
+.info {
+    color: #aab1bf;
+    line-height: 1.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">⛏ BotyTOPKA</div>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h1>Panel botów Minecraft</h1>
+
+        <p class="info">
+            Panel do testowania botów na własnym serwerze Minecraft.
+        </p>
+
+        <label>IP serwera</label>
+        <input id="ip" placeholder="np. localhost">
+
+        <label>Port</label>
+        <input id="port" value="25565">
+
+        <label>Liczba botów</label>
+        <input id="bots" type="number" min="1" max="50" value="1">
+
+        <button class="start" onclick="startBots()">
+            START
+        </button>
+
+        <button class="stop" onclick="stopBots()">
+            STOP
+        </button>
+
+        <div class="status" id="status">
+            Status: oczekiwanie
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Akcje</h2>
+
+        <button class="action" onclick="action('click')">
+            🖱 Kliknij
+        </button>
+
+        <button class="action" onclick="action('jump')">
+            ⬆ Skok
+        </button>
+
+        <button class="action" onclick="action('attack')">
+            ⚔ Akcja
+        </button>
+    </div>
+
+</div>
+
+<script>
+function startBots() {
+    const ip = document.getElementById("ip").value;
+    const port = document.getElementById("port").value;
+    const bots = document.getElementById("bots").value;
+
+    if (!ip) {
+        document.getElementById("status").textContent =
+            "Status: wpisz IP serwera";
+        return;
+    }
+
+    document.getElementById("status").textContent =
+        `Uruchamianie ${bots} botów na ${ip}:${port}`;
+}
+
+function stopBots() {
+    document.getElementById("status").textContent =
+        "Status: boty zatrzymane";
+}
+
+function action(type) {
+    document.getElementById("status").textContent =
+        "Wysłano akcję: " + type;
+}
+</script>
+
+</body>
+</html>
 
